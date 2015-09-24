@@ -105,12 +105,15 @@ if(isset($_GET['id'])){
           </div>
           <div class="span4 well" style="padding-bottom:10px">
             <form accept-charset="UTF-8" action="" method="POST">
-                <label><span>Write Here</span></label>
+                <label><span><strong>Write Here</strong></span></label>
                 <textarea class="span4" name="area" id="area" style="width:100%;height:80px;" placeholder="Write Here"
                  ></textarea>
                 <button class="btn btn-info" type="submit">Post Answer</button>
             </form>
           </div>
+          <div class="animation" style="display:none" align="center">
+            <img src="image/ajax-loader.gif">
+          </div><br/>
          
           <div id="results"></div></div>
             <div class="animation_image" style="display:none" align="center">
@@ -149,19 +152,6 @@ if(isset($_GET['id'])){
         </div>
       </div>
 
-      <div id="source-modal" class="modal fade">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Source Code</h4>
-            </div>
-            <div class="modal-body">
-              <pre></pre>
-            </div>
-          </div>
-        </div>
-      </div>
 
     <?php include("footer.php");?>
 
@@ -177,10 +167,10 @@ if(isset($_GET['id'])){
       var track_load = 0; //total loaded record group(s)
       var loading  = false; //to prevents multipal ajax loads
       var total_groups = <?php echo $total_groups; ?>; //total record group(s)
-      var qid =<?php echo $qid; ?>;
+      var qid =<?php if(!isset($qid)){echo "0";}else{ echo $qid;} ?>;
       $('#results').load("load_ans.php", {'group_no':track_load,'id':qid}, function() {track_load++;}); //load first group
       $(window).scroll(function() { //detect page scroll
-        if($(window).scrollTop() + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
+        if($(window).scrollTop() + $(window).height() <= $(document).height()-100)  //user scrolled to bottom of the page?
         {
           if(track_load <= total_groups && loading==false) //there's more data to load
           {

@@ -11,11 +11,12 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav nav-pills">
           <li>
-          <form class="navbar-form navbar-center" role="search" method="post">
-            <div class="form-group">
-            <input type="text" id="search-box" class="form-control" placeholder="Search Here..." style="width:320px;">
+          <form class="navbar-form navbar-center" role="search">
+            <div class="form-group input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <input type="text" id="search" class="form-control" placeholder="Enter to Search" value="<?php if(isset($srch)){echo $srch;}?>" style="width:400px;">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <!-- <button id="searchButton" class="btn btn-default">Submit</button> -->
         </form>
         <ul id="search_suggestion_holder" class="dropdown-menu drop">
             </ul>
@@ -47,12 +48,22 @@
           <ul class="nav navbar-nav navbar-right nav-pills">
             <li><form class="navbar-form navbar-center" role="search">
             <div class="form-group">
-            <button type="submit" class="btn btn-primary"> Start Discussion?</button>
+            <a href="question.php"  class="btn btn-primary"> Start Discussion?</a>
             </div></form></li>
           </ul> 
 
         </div>
       </div>
     </div>
-    
-    
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('#search').keyup(function (e) {
+        var str = $('#search').val();
+        var url = "search.php?search=" + str;
+        if (e.keyCode == 13) {
+            location.href = url;
+        }
+    });
+      });
+    </script>

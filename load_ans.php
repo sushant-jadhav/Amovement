@@ -93,7 +93,7 @@ if($_POST)
                              datatype:' html' ,
                             data:mydata, 
                             success: function(data){
-                          var like=<?php echo $like?>;
+                          var like=<?php if(!isset($like)){echo "0";}else{ echo $like;}?>;
                           like=like+1;
                           $('#like').html(like).fadeIn('fast');
                           $(this).attr("disabled",true);
@@ -114,7 +114,7 @@ if($_POST)
                             data:mydata, 
                             success: function(data){
                           console.log(data);
-                          var unlike=<?php echo $unlike?>;
+                          var unlike=<?php if(!isset($unlike)){echo "0";}else{ echo $unlike;}?>;
                           unlike=unlike+1;
                           $('#unlike').html(unlike).fadeIn('fast');
                           $(this).attr("disabled",true);

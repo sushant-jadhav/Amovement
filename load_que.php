@@ -13,7 +13,7 @@ if($_POST)
 	$position = ($group_number * $items_per_group);
 	
 	//Limit our results within a specified range. 
-	$results = $mysqli->query("SELECT questions.*,questions.id as que_id,users.* from questions inner join users on questions.user_id=users.id order by questions.date_create ASC LIMIT $position, $items_per_group");
+	$results = $mysqli->query("SELECT questions.*,questions.id as que_id,users.* from questions inner join users on questions.user_id=users.id order by questions.date_create DESC LIMIT $position, $items_per_group");
 	
 	if ($results) { 
 		//output results from database

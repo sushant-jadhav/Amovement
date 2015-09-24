@@ -53,17 +53,10 @@ if(isset($_SESSION['uid'])){
             <?php echo $user_profile->fullname;?>
           </div>
           <div class="profile-usertitle-job">
-           
           </div>
         </div>
-        <!-- END SIDEBAR USER TITLE -->
-        <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button type="button" class="btn btn-success btn-sm">Follow</button>
-          <!-- <button type="button" class="btn btn-danger btn-sm">Message</button> -->
         </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
           <ul class="nav">
             <li class="active">
@@ -74,7 +67,7 @@ if(isset($_SESSION['uid'])){
             <li>
               <a href="setting.php">
               <i class="glyphicon glyphicon-user"></i>
-              Account Settings </a>
+              Settings </a>
             </li>
             <li>
               <a href="follower.php">
@@ -85,11 +78,6 @@ if(isset($_SESSION['uid'])){
               <a href="help.php">
               <i class="glyphicon glyphicon-flag"></i>
               Help </a>
-            </li>
-            <li>
-              <a href="logout.php">
-              <i class="glyphicon glyphicon-flag"></i>
-              Logout </a>
             </li>
           </ul>
         </div>

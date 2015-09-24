@@ -48,16 +48,11 @@ if(isset($_SESSION['uid'])){
             <?php echo $user_profile->fullname;?>
           </div>
           <div class="profile-usertitle-job">
-            Developer
+           
           </div>
         </div>
-        <!-- END SIDEBAR USER TITLE -->
-        <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button type="button" class="btn btn-success btn-sm">Follow</button>
         </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
           <ul class="nav">
             <li>
@@ -87,32 +82,35 @@ if(isset($_SESSION['uid'])){
     </div>
     <div class="col-md-9">
       <div class="profile-content">
-            <div class="setting">
-                <label><h4>Genaral Setting</h4></label><hr/>
-                <form method="post" action="update.php">
-                <!--  <?php echo $_SERVER['PHP_SELF']; ?>-->
-                   <div class="input-group">
-                   <label for="inputEmail1" class="control-label">Full Name:</label>
-                      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
-                      <input id="fullname" type="text" class="form-control" name="fullname" value="<?php echo $user_profile->fullname; ?>">
-                  </div><br/>
-                  <div class="input-group">
-                  <label for="inputEmail1" class="control-label">About you:</label>
-                      <textarea class="span4" name="about" id="about" style="width:100%;height:80px;"
-                 ><?php echo $user_profile->about;?></textarea>
-                  </div><br/>
-                  <div class="input-group">
-                   <label for="inputEmail1" class="control-label">New Password:</label>
-                      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
-                      <input id="password" type="password" class="form-control" name="password" value="<?php echo $user_profile->password;?>">
-                  </div><br/>
-                  <div class="input-group">
-                      <!-- <input id="user" type="text" class="form-control" name="about" value="<?php //echo $about;?>"> -->
-                      <button type="submit" name="update" class="btn btn-default">Update</button>
-                  </div>
-                
-            </form>
+      <form class="form-horizontal" method="post" action="update.php">
+  <fieldset>
+    <legend>General Setting</legend>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Full Name:</label>
+      <div class="col-lg-10">
+        <input type="text" id="fullname" class="form-control" name="fullname" value="<?php echo $user_profile->fullname;?>">
       </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">New Password:</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="password" name="password" value="<?php echo $user_profile->password;?>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="textArea" class="col-lg-2 control-label">About you:</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" name="about" id="about" rows="3" id="textArea"><?php echo $user_profile->about;?></textarea>
+        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" name="update" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
     </div>
   </div>
 </div>
@@ -127,7 +125,14 @@ if(isset($_SESSION['uid'])){
     <script src="js/custom.js"></script>
     <script src="js/filter.js"></script>
     <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-
+    <script type="text/javascript">
+            bkLib.onDomLoaded(function() { nicEditors.allTextAreas }); // convert all text areas to rich text editor on that page
+            bkLib.onDomLoaded(function() {
+                 // new nicEditor({maxHeight : 200}).panelInstance('about');
+                 new nicEditor({buttonList : ['bold','italic','underline','fontSize','fontFamily','strikeThrough','subscript','superscript','html']}).panelInstance('about');
+        //new nicEditor({fullPanel : true,maxHeight : 200}).panelInstance('area1');
+            }); // convert text area with id area1 to rich text editor.
+    </script>
   <script type="text/javascript">
 /* <![CDATA[ */
 (function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();

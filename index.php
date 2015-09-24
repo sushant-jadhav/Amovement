@@ -38,8 +38,6 @@ if(isset($_SESSION['uid'])){
             <div class="profile-userbuttons">
               Feeds
             </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
             <div class="profile-usermenu">
               <ul class="nav">
                 <li>
@@ -84,10 +82,8 @@ if(isset($_SESSION['uid'])){
           <div class="col-lg-3">
            <div class="profile-sidebar">
             <div class="profile-userbuttons">
-              Feeds
+              Discussion
             </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
             <div class="profile-usermenu">
               <ul class="nav">
                 <li>
@@ -128,13 +124,12 @@ if(isset($_SESSION['uid'])){
       $(window).scroll(function() { //detect page scroll 
         //console.log(track_load);
         if($(window).scrollTop() + $(window).height() <= $(document).height()-100)  //user scrolled to bottom of the page?
-        {console.log(track_load);
+        {//console.log(track_load);
           if(track_load <= total_groups && loading==false) //there's more data to load
           {
             loading = true; //prevent further ajax loading
             $('.animation_image').show(); //show loading image
             //load data from the server using a HTTP POST request
-            console.log(track_load);
             $.post('load_que.php',{'group_no': track_load}, function(data){
               $("#results").append(data); //append received data into the element
               //hide loading image
