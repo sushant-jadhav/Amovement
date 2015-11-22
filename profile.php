@@ -12,7 +12,7 @@ if(isset($_SESSION['uid'])){
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>AbhiVaad</title>
+    <title>AbhiVaad | Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
@@ -113,7 +113,7 @@ if(isset($_SESSION['uid'])){
                         <small class="likecomm"><?php echo $usertrim[0];?> appritiate this in public</span> - <span><?php echo strftime("%B, %d %Y", strtotime($app->status_date));?></span></small><?php }?>
                         <?php if($status==0){?>
                         <small class="likecomm"><?php echo $usertrim[0];?> depritiate this in public</span> - <span><?php echo strftime("%B, %d %Y", strtotime($app->status_date));?></span></small><?php }?>
-                            <h2><?php echo $app->title;?>?</h2>
+                            <h4><?php echo $app->title;?>?</h4>
                         </div>
                         <div class="panel-body userinfo">
                             <img class="[ img-circle pull-left ]" src="image/unnamed.png" alt="user" />
@@ -124,22 +124,6 @@ if(isset($_SESSION['uid'])){
                         <p><?php $text=$app->answer_text; if(strlen($text)>500){echo $text=substr($text,0);}?></p>
                         </div>
                         <div class="panel-body fetch">
-                        </div>
-                        <div class="panel-footer">
-                            <!-- <button type="button" class="[ btn btn-default ]">Appritiate</button> -->
-                            <button type="button" class="[ btn btn-default ]">
-                                <span class="[ glyphicon glyphicon-share-alt ]">Share</span>
-                            </button>
-                            <div class="input-placeholder">Add a comment...</div>
-                        </div>
-                        <div class="panel-google-plus-comment">
-                            <img class="img-circle" src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" alt="User Image" />
-                            <div class="panel-google-plus-textarea">
-                                <textarea name="area" id="area" rows="5"></textarea>
-                                <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
-                                <button type="reset" class="[ btn btn-default ]">Cancel</button>
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
                       </div>
                     </div>

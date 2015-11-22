@@ -22,7 +22,7 @@ if(isset($_GET['search'])){
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Abhivad </title>
+    <title>Abhivad | search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- <meta http-equiv="refresh" content="1"> -->
@@ -92,7 +92,7 @@ if(isset($_GET['search'])){
               <div class="row">
               <div class="panel panel-default">
               <div class="panel-body">
-                  <a><strong><h3><?php echo $result_q->title;?>?</h3></strong></a>
+                  <a href="view.php?id=<?php echo $result_q->id;?>"><strong><h3><?php echo $result_q->title;?>?</h3></strong></a>
                      <div class="user_info">
                    <div class="testimonials">
                   <div class="active item">

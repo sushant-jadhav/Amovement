@@ -1,6 +1,6 @@
 body {
     background: #F1F3FA;
-    padding-top: 35px;
+    padding-top: 50px;
 }
 body>.navbar {
     -webkit-transition: background-color 300ms ease-in;

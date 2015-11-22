@@ -13,9 +13,8 @@ if($_POST)
 	}
 	//get current starting point of records
 	$position = ($group_number * $items_per_group);
-	
-	//Limit our results within a specified range. 
-	 $results = $mysqli->query("SELECT questions.*,answers.*,answers.id as aid,users.*,appritiate.*,answers.is_anonymuos as ano  from questions inner join answers on questions.id=answers.question_id  left join users on answers.user_id=users.id left join appritiate on answers.id=appritiate.id where answers.question_id=$qid order by date_create ASC LIMIT $position, $items_per_group");
+	//Limit our results within a specified range.
+	 $results = $mysqli->query("SELECT questions.*,answers.*,answers.id as aid,users.*,appritiate.*,answers.is_anonymuos as ano  from questions inner join answers on questions.id=answers.question_id  left join users on answers.user_id=users.id left join appritiate on answers.id=appritiate.id where answers.question_id=$qid order by created DESC LIMIT $position, $items_per_group");
 	if ($results) {
 			?>
                   <?php
@@ -60,19 +59,30 @@ if($_POST)
                   <span id="status"></span><br>
                   <p class="">
                     <!-- <a href="#" class="btnn btn-primary" style="text-decoration: none;">Appricite</a> -->
-                    <button class="btn btn-sm btn-hover btn-primary button_like" value="<?php echo $ans->aid;?>" id="linkeBtn"><span class="glyphicon glyphicon-thumbs-up"> Appritiate <span id="like"><?php echo $like;?></span></span><?php ?></button>
-                    <button class="btn btn-sm btn-hover btn-danger button_unlike" value="<?php echo $ans->aid;?>"  id="unlinkeBtn"><span class="glyphicon glyphicon-thumbs-down"> Depritiate <span id="unlike"><?php echo $unlike;?></span></span></button>
-                    <button class="btn btn-sm btn-hover btn-success"><span class="glyphicon glyphicon-check"></span> Comment</button>
-              <!-- <a href="#" class="btn btn-xs btn-hover btn-default">Print <span class="glyphicon glyphicon-print"></span></a> -->
-                    <!-- 9975872949<a href="#" class="btnn btn-default">Depreciate</a> -->
+                    <button class="btn btn-sm btn-primary button_like" value="<?php echo $ans->aid;?>" id="linkeBtn"><span class="glyphicon glyphicon-thumbs-up"> Appritiate <span id="like"><?php echo $like;?></span></span><?php ?></button>
+                    <button class="btn btn-sm  btn-primary button_unlike" value="<?php echo $ans->aid;?>"  id="unlinkeBtn"><span class="glyphicon glyphicon-thumbs-down"> Depritiate <span id="unlike"><?php echo $unlike;?></span></span></button>
+                    <button class="btn btn-sm  btn-primary add" value="<?php echo $ans->aid;?>"><span class="glyphicon glyphicon-check"></span> Comment</button>
                   </p>
+                  <div class="post">
+                    <div class="col-lg-12 col-sm-6 text-left">
+                      <div class="well">
+                      <div class="input-group">
+                          <input type="text" id="userComment" class="form-control input-sm" placeholder="Write your message here..." />
+                        <span class="input-group-btn" onclick="addComment()">
+                              <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
+                          </span>
+                      </div>
+                      <div id="post_<?php echo $ans->aid;?>">
+                      </div>
+                      </div>
                   </div>
                  </div>
+                  </div>
 					</div>
+          </div>
                   <?php } ?>
                   <br/>
  <?php
-		
 	}
 	unset($obj);
 	$mysqli->close();
@@ -82,7 +92,6 @@ if($_POST)
 ?>
 <script type="text/javascript">
                     $(document).ready(function(){
-                      
                       $(".button_like").unbind().click(function(){
                           var ansid=$(this).attr("value");
                           var mydata={'ansid':ansid};
@@ -123,3 +132,18 @@ if($_POST)
                      });
 
                   </script>
+<script type="text/javascript">
+        $(document).ready(function(){
+         $('.add').unbind().on("click",(function(e){
+          var queid=$(this).attr("value");
+        $(this).closest('div').find('.post').toggle();
+        console.log(queid);
+        $.post('comment.php',{'qid':queid}, function(data){
+          // $(this).closest('div').find('#post').append(data);
+
+        console.log(queid);
+          $('#post_'+queid).append(data);
+        });
+    }));
+  });
+</script>

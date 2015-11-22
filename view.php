@@ -21,7 +21,7 @@ if(isset($_GET['id'])){
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Abhivad </title>
+    <title>Abhivaad | view</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- <meta http-equiv="refresh" content="1"> -->
@@ -34,12 +34,9 @@ if(isset($_GET['id'])){
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="../bower_components/respond/dest/respond.min.js"></script>
     <![endif]-->
-    
   </head>
   <body>
   <?php include("navbar.php");?>
-
-
     <div class="container">
       <div class="bs-docs-section">
         <div class="row">
@@ -74,7 +71,6 @@ if(isset($_GET['id'])){
         <!-- END MENU -->
       </div>
           </div>
-          
           <div class="col-lg-7">
             <div>
             <?php 
@@ -91,8 +87,7 @@ if(isset($_GET['id'])){
               <div class="row">
               <div class="panel panel-default">
               <div class="panel-body">
-          
-                  <a><strong><h3><?php echo $result_q->title;?>?</h3></strong></a>
+                  <a><strong><h4><?php echo $result_q->title;?>?</h4></strong></a>
                      <div class="user_info">
                    <div class="testimonials">
                   <div class="active item">
@@ -104,18 +99,26 @@ if(isset($_GET['id'])){
            </div>
           </div>
           <div class="span4 well" style="padding-bottom:10px">
-            <form accept-charset="UTF-8" action="" method="POST">
-                <label><span><strong>Write Here</strong></span></label>
+            <form id="posta">
+                <label><span><strong><h5>Write Here</h5></strong></span></label>
                 <textarea class="span4" name="area" id="area" style="width:100%;height:80px;" placeholder="Write Here"
-                 ></textarea>
-                <button class="btn btn-info" type="submit">Post Answer</button>
-            </form>
+                required ></textarea>
+                <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="ianmous"> isanynomus
+                    </label>
+                  </div>
+                </form>
+                <button class="btn btn-primary" id="postans" style="margin-top:10px">Post Answer</button>
           </div>
           <div class="animation" style="display:none" align="center">
             <img src="image/ajax-loader.gif">
           </div><br/>
-         
-          <div id="results"></div></div>
+          <div id="answer_add" style="display:none">
+            
+          </div>
+          <div id="results"></div>
+          </div>
             <div class="animation_image" style="display:none" align="center">
               <img src="image/ajax-loader.gif">
               </div><br/>
@@ -124,25 +127,20 @@ if(isset($_GET['id'])){
 
           <div class="col-lg-3">
             <div class="profile-sidebar">
-            <div class="profile-userbuttons">
-              Related stuff
+            <div class="profile-userbuttons">Related stuff
             </div>
             <div class="profile-usermenu">
           <ul class="nav">
-            <li>
-              <a href="profile.php">
+            <li><a href="profile.php">
               Posts </a>
             </li>
-            <li>
-              <a href="setting.php">
+            <li><a href="setting.php">
                Settings </a>
             </li>
-            <li>
-              <a href="follower.php">
+            <li><a href="follower.php">
               Followers </a>
             </li>
-            <li>
-              <a href="help.php">
+            <li><a href="help.php">
               Help </a>
             </li>
           </ul>
@@ -200,12 +198,49 @@ if(isset($_GET['id'])){
         //new nicEditor({fullPanel : true,maxHeight : 200}).panelInstance('area1');
             }); // convert text area with id area1 to rich text editor.
     </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+     // $('form').submit(function (e) {
+    $('#postans').click(function(e) {
+      e.preventDefault();
+        var data = $('#posta').find('.nicEdit-main').html();
+        if(data=='<br>'){
+          console.log('no');
+        }else if(data!='<br/>'){
+        var uid = <?php echo $uid;?>;
+        var qid = <?php echo $qid;?>;
+        if($("#ianmous").is(':checked')){
+          var ianon = 1;
+        }else{
+          var ianon = 0;
+        }
+        var d = new Date();
+        var n = d.toISOString();
+        var adddata={'anstxt':data,'uid':uid,'qid':qid,'comm_date':n,'isanon':ianon};
+        console.log(adddata);
+        $.ajax({
+          url: 'answer_add.php',
+          method:'POST',
+          cache: 'false' ,
+          datatype:' html' ,
+          data:adddata,
+          success: function(data){
+           console.log(data);
+           $('#answer_add').show();
+           $('#answer_add').append(data);
+          },error: function() {
+            alert('Error occurs!');
+          }
+         });
+      }
+      });
+    });
+    </script>
 
   <script type="text/javascript">
 /* <![CDATA[ */
-(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
+// (function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
 /* ]]> */
 </script>
 </body>
 </html>
-<!-- 8806733221 617425 776956  -->

@@ -203,4 +203,6 @@ body {
   margin-left: 10px;
 }
 
-
+.post{
+  display: none;
+}

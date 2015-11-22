@@ -9,12 +9,13 @@ if(isset($_POST['update'])){
 	$fullname=mysql_real_escape_string($_POST['fullname']);
 	$about=mysql_real_escape_string($_POST['about']);
 	$password=mysql_real_escape_string($_POST['password']);
-	echo $uid;
 	$stmt = $mysqli->prepare("UPDATE users SET fullname = ?,about = ?,password = ? WHERE id = ?");
 		$stmt->bind_param('sssd',$fullname,$about,$password,$uid);
-		$stmt->execute(); 
-		$stmt->close();
-
+		$stmt->execute();
+		if($stmt->execute()!=null){
+			header("Location: setting.php");
+			$stmt->close();
+		}
 
 }
 ?>

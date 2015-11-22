@@ -39,7 +39,7 @@ if(isset($_SESSION['uid'])){
       <div class="profile-sidebar">
         <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
-          <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+          <img src="image/unnamed.png" class="img-responsive" alt="">
         </div>
         <!-- END SIDEBAR USERPIC -->
         <!-- SIDEBAR USER TITLE -->
@@ -65,12 +65,12 @@ if(isset($_SESSION['uid'])){
               <i class="glyphicon glyphicon-tag"></i>
               Posts </a>
             </li>
-            <li class="active">
+            <li >
               <a href="setting.php">
               <i class="glyphicon glyphicon-user"></i>
               Account Settings </a>
             </li>
-            <li>
+            <li class="active">
               <a href="follower.php">
               <i class="glyphicon glyphicon-ok"></i>
               Followers </a>

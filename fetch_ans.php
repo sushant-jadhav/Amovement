@@ -12,22 +12,17 @@ if($_POST)
 	// }
 	//get current starting point of records
 	// $position = ($group_number * $items_per_group);
-	
 	//Limit our results within a specified range. 
 	$results = $mysqli->query("SELECT appritiate.*,answers.*,answers.user_id as uid,questions.*,users.* from appritiate inner join answers on appritiate.ans_id=answers.id left join questions on answers.question_id=questions.id left join users on answers.user_id=users.id where appritiate.user_id=$uid ");
-	
-	if ($results) { 
+	if ($results) {
 		//output results from database
-		
 		while($que = $results->fetch_object())
 		{$abt=$que->que_about;
 			?>
 			 <!-- <div class="panel panel-default" id="results"> -->
-			 
             	<div class="panel-body">
                         <p><?php $text=$app->answer_text; if(strlen($text)>500){echo $text=substr($text,500).'<a href="#"> Read more</a>';}?></p>
                         </div>
-                
  <?php
 		}
 	}

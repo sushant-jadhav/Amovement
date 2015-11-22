@@ -20,7 +20,6 @@ if(isset($_POST['ansid'])){
 		}
 		echo "liked";
 $statement->close();
-	
 }
 
 elseif(isset($_POST['ansuid'])){

@@ -2,8 +2,8 @@
 include ('db.php');
 if (isset($_POST['formsubmitted'])) {
     $current_date = date("Y-m-d");
-    $error = array();//Declare An Array to store any error message  
-    if (empty($_POST['name'])) {//if no name has been supplied 
+    $error = array();//Declare An Array to store any error message
+    if (empty($_POST['name'])) {//if no name has been supplied
         $error[] = 'Please Enter a name ';//add to array "error"
     } else {
         $name = $_POST['name'];//else assign it a variable

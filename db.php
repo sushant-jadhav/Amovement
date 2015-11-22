@@ -1,6 +1,10 @@
 <?php
 
 /*Define constant to connect to database */
+// DEFINE('DATABASE_USER', 'a8718191_sushant');
+// DEFINE('DATABASE_PASSWORD', 'Sush1993');
+// DEFINE('DATABASE_HOST', 'a8718191_000webhost.com');
+// DEFINE('DATABASE_NAME', 'a8718191_abhivad');
 DEFINE('DATABASE_USER', 'root');
 DEFINE('DATABASE_PASSWORD', '');
 DEFINE('DATABASE_HOST', 'localhost');
@@ -16,7 +20,7 @@ ini_set('SMTP', "mail.myt.mu"); // Overide The Default Php.ini settings for send
 define('EMAIL', 'sushantjadhav2010@gmail.com');
 
 /*Define the root url where the script will be found such as http://website.com or http://website.com/Folder/ */
-DEFINE('WEBSITE_URL', 'http://localhost');
+DEFINE('WEBSITE_URL', 'http://abhivaad.webuda.com');
 
 
 // Make the connection:

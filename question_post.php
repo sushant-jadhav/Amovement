@@ -20,8 +20,7 @@ if(isset($_POST['title'])){
 		    die('Error : ('. $mysqli->errno .') '. $mysqli->error);
 		}
 		echo "done";
-$statement->close();
-	
+		$statement->close();
 }
 
 ?>

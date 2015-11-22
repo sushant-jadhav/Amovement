@@ -14,14 +14,14 @@
           <form class="navbar-form navbar-center" role="search">
             <div class="form-group input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" id="search" class="form-control" placeholder="Enter to Search" value="<?php if(isset($srch)){echo $srch;}?>" style="width:400px;">
+            <input type="text" id="search" class="form-control" placeholder="Enter to Search" value="<?php if(isset($srch)){echo $srch;}?>" style="width:250px;">
           </div>
           <!-- <button id="searchButton" class="btn btn-default">Submit</button> -->
         </form>
         <ul id="search_suggestion_holder" class="dropdown-menu drop">
             </ul>
           </li>
-           <li class="active"><a href="index.php"><i class="glyphicon glyphicon-home"></i> Home <span class="badge"></span></a></li>
+           <li><a href="index.php"><i class="glyphicon glyphicon-home"></i> Home <span class="badge"></span></a></li>
             <li><a href="profile.php"> Profile <span class="badge"></span></a></li>
             <li class="imges">
                <!-- <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> -->
